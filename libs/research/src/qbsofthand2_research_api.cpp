@@ -125,7 +125,7 @@ int qbSoftHand2MotorsResearch::setHomePosition() {
   if(synergies.size() <= 0 || result < 0 || limits.size() < 4){ // something went wrong
     return result;
   }
-  std::vector<std::vector<int>> synergies_references{{limits.at(0), synergies.at(1)}, {synergies.at(0), -synergies.at(1)*3}}; //|synergies references to cancel synergy 1 | synergies references to cancel synergy 2|
+  std::vector<std::vector<int>> synergies_references{{limits.at(0), 0}, {synergies.at(0), 0}}; //|synergies references to cancel synergy 1 | synergies references to cancel synergy 2|
   std::vector<int> synergies_to_reach {-1000, 200};
 
   int synergy_to_cancel = 1;
