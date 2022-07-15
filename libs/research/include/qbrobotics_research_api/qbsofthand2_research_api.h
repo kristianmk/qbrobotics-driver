@@ -13,6 +13,8 @@ namespace qbrobotics_research_api {
       ~Params() override = default;
 
       void initParams(const std::vector<int8_t> &param_buffer) override;
+
+      uint8_t hand_side {0};
     };
 
     explicit qbSoftHand2MotorsResearch(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id);
@@ -24,6 +26,23 @@ namespace qbrobotics_research_api {
     int setParameter(uint16_t param_type, const std::vector<int8_t> &param_data) override;
     int setParamId(uint8_t id) override;
     int setParamZeros() override;
+
+
+    /**
+     * @brief Update the SoftHand 2 hand_side parameter in the class variable \p param_
+     *
+     * @return 0 on success, -1 on error 
+     */
+    int getParamHandSide();
+
+    /**
+     * @brief Get the hand_side parameter for RIGHT or LEFT Hand for SoftHand 2.
+     * 
+     * @param[out] hand_side 0 for RIGHT Hand, 1 for LEFT Hand
+     * @return 0 on success, -1 on  error
+     * 
+     */
+    int getParamHandSide(uint8_t &hand_side);
 
     /**
      * @brief Update the SoftHand 2 encoder offsets in the class variable \p param_
@@ -57,7 +76,6 @@ namespace qbrobotics_research_api {
      */
     int setParamEncoderOffsets(const std::vector<int16_t> &encoder_offsets) override;
 
-
     /**
      * @brief Set the Additive Synergies References to SoftHand 2. This command allows to command the SoftHand closure and the its direction of closure. (ADDITIVE SYNERGIES)
      * 
@@ -75,6 +93,15 @@ namespace qbrobotics_research_api {
      * @return 0 on success, -1 on error, -2 if limits are violated
      */
     int setMultiplicativeSynergiesReferences(float synergy_1, float synergy_2);
+
+    /**
+     * @brief Set the hand_side parameter for RIGHT or LEFT Hand for SoftHand 2.
+     * 
+     * @param hand_side 0 for RIGHT Hand, 1 for LEFT Hand
+     * @return 0 on success, -1 on  error
+     * @warning The improper use of this function could damage the device and invalidate the device warranty. Contact our support team (support@qbrobotics.com) for more information.
+     */
+    int setParamHandSide(uint8_t hand_side);
 
     /**
      * @brief Blocking function that moves SoftHand 2 motors to home position

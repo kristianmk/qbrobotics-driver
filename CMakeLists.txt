@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.1 FATAL_ERROR)
-project(qbrobotics_driver VERSION 7.0.2 LANGUAGES CXX)
+project(qbrobotics_driver VERSION 7.1.1 LANGUAGES CXX)
 get_filename_component(API_PATH ../ ABSOLUTE)
 if(EXISTS "${API_PATH}/serial/CMakeLists.txt")
         message("-- [ ${PROJECT_NAME}] Serial folder found")
@@ -36,7 +36,6 @@ set_target_properties(qbrobotics_driver PROPERTIES
   CXX_STANDARD_REQUIRED ON
   CXX_EXTENSIONS NO
 )
-
 add_library(qbrobotics_driver::qbrobotics_driver ALIAS qbrobotics_driver)
 
 #TODO: add install for qbAPI backward compatibility

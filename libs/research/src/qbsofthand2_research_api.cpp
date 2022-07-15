@@ -7,6 +7,8 @@ void qbSoftHand2MotorsResearch::Params::initParams(const std::vector<int8_t> &pa
   Device::Params::initParams(param_buffer);
   // Legacy firmware needs inverted signs for second motor encoders (encoder 3 and encoder 4)
   std::for_each(encoder_offsets.begin()+2, encoder_offsets.end(), [](int16_t &x){ x *= -1; } );
+
+  getParameter<uint8_t>(25, param_buffer, hand_side);
 }
 
 qbSoftHand2MotorsResearch::qbSoftHand2MotorsResearch(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id)
@@ -29,6 +31,11 @@ int qbSoftHand2MotorsResearch::setParameter(uint16_t param_type, const std::vect
     set_fail = Device::storeUserDataMemory();  // WARN: a store user memory is required on legacy devices!
   }
   std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  return set_fail;
+}
+
+int qbSoftHand2MotorsResearch::setParamHandSide(uint8_t hand_side) {
+  int set_fail = setParameter(25, Communication::vectorSwapAndCast<int8_t, uint8_t>({hand_side}));
   return set_fail;
 }
 
@@ -71,6 +78,19 @@ int qbSoftHand2MotorsResearch::getParamEncoderOffsets(std::vector<int16_t> &enco
   // Legacy firmware needs inverted signs for second motor encoders (encoder 3 and encoder 4)
   std::for_each( encoder_offsets.begin()+2, encoder_offsets.end(), [](int16_t &x){x *= -1;} );
   return set_fail;
+}
+
+int qbSoftHand2MotorsResearch::getParamHandSide() {
+    return getParamHandSide(std::dynamic_pointer_cast<qbrobotics_research_api::qbSoftHand2MotorsResearch::Params>(params_)->hand_side);
+}
+
+int qbSoftHand2MotorsResearch::getParamHandSide(uint8_t &hand_side) {
+  std::vector<int8_t> param_buffer;
+  if (getParameters(param_buffer) != 0) {
+    return -1;
+  }
+  Params::getParameter<uint8_t>(25, param_buffer, hand_side);
+  return 0;
 }
 
 int qbSoftHand2MotorsResearch::getSynergies(std::vector<int16_t> &synergies) {

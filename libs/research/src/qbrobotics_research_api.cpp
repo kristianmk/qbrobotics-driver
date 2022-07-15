@@ -37,7 +37,7 @@ Communication::Communication()
     : Communication(2000000) {}
 
 Communication::Communication(uint32_t baud_rate)
-    : Communication(baud_rate, serial::Serial::Timeout(150)) {}  // could be serial::Serial::Timeout(20) for new devices but legacy require a higher timeout(even 150 for SHR2)
+    : Communication(baud_rate, serial::Serial::Timeout(200)) {}  // could be serial::Serial::Timeout(20) for new devices but legacy require a higher timeout(even 150 for SHR2)
 
 Communication::Communication(const serial::Serial::Timeout &timeout)
     : Communication(2000000, timeout) {}
@@ -108,7 +108,7 @@ int Communication::listConnectedDevices() {
 int Communication::listConnectedDevices(const std::string &serial_port_name, std::vector<ConnectedDeviceInfo> &device_ids) {
   device_ids.clear();
 
-  serial::Serial::Timeout short_timeout(serial::Serial::Timeout(1));
+  serial::Serial::Timeout short_timeout(serial::Serial::Timeout(5));
   if (!openSerialPort(serial_port_name, serial_ports_baud_rate_, short_timeout)) {
     serial_ports_.at(serial_port_name)->setTimeout(short_timeout);  // if already connected it might have a different timeout
     std::vector<int8_t> data_in;
