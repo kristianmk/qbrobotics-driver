@@ -2,6 +2,10 @@
 Changelog for package qbrobotics_driver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+7.1.2 (2022-07-18)
+------------------
+* Bug fixed with installation directory
+
 7.1.1 (2022-07-15)
 ------------------
 * Increased timeout to improve device scanning on Windows PCs
