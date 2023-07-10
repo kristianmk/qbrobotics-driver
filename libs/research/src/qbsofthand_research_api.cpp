@@ -267,6 +267,17 @@ int qbSoftHandResearch::setParamRateLimiter(uint8_t rate_limiter) {
   return set_fail;
 }
 
+int qbSoftHandResearch::setParamSerialNumber(const uint32_t &serial_number) {
+  if(!((serial_number & qbhand_mask_) == qbhand_mask_)) {
+      return -3;
+  }
+  int set_fail = setParameter(23, Communication::vectorSwapAndCast<int8_t, uint32_t>({serial_number}));
+  if (!set_fail) {
+    params_->serial_number = "00" + std::to_string(serial_number);
+  }
+  return set_fail;
+}
+
 
 // ----------------------------------------------------------------
 

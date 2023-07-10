@@ -88,6 +88,10 @@ class qbSoftHandResearch : public Device {
   int setParamUsePWMRescaling(uint8_t use_pwm_rescaling);
   int setParamCurrentLookupTable(const std::vector<float> &current_lookup_table);
   int setParamRateLimiter(uint8_t rate_limiter);
+  int setParamSerialNumber(const uint32_t &serial_number) override;
+
+ private:
+  const uint32_t qbhand_mask_ = 0b00000011100100110000000000000000;
 };
 
 class qbSoftHandLegacyResearch : public qbSoftHandResearch {

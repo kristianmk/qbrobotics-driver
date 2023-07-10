@@ -37,7 +37,7 @@ Communication::Communication()
     : Communication(2000000) {}
 
 Communication::Communication(uint32_t baud_rate)
-    : Communication(baud_rate, serial::Serial::Timeout(200)) {}  // could be serial::Serial::Timeout(20) for new devices but legacy require a higher timeout(even 150 for SHR2)
+    : Communication(baud_rate, serial::Serial::Timeout(200)) {}  // could be serial::Serial::Timeout(20) for new devices but legacy require a higher timeout(even 300 for SHR2)
 
 Communication::Communication(const serial::Serial::Timeout &timeout)
     : Communication(2000000, timeout) {}
@@ -574,7 +574,7 @@ int CommunicationLegacy::deserializePackage(const std::vector<uint8_t> &package_
 int CommunicationLegacy::readLongPackage(const std::string &serial_port_name, std::vector<uint8_t> &package_in) {
   package_in.clear();
   try {
-    serial_ports_.at(serial_port_name)->read(package_in, 5000);
+    serial_ports_.at(serial_port_name)->read(package_in, 10000);
   } catch (...) {
     return -1;
   }
@@ -612,9 +612,12 @@ Device::Device(std::shared_ptr<Communication> communication, std::string name, s
     : Device(std::move(communication), std::move(name), std::move(serial_port), id, true, std::make_unique<Params>()) {}
 
 Device::Device(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id, bool init_params)
-    : Device(std::move(communication), std::move(name), std::move(serial_port), id, init_params, std::make_unique<Params>()) {}
+    : Device(std::move(communication), std::move(name), std::move(serial_port), id, init_params, true, std::make_unique<Params>()) {}
 
 Device::Device(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id, bool init_params, std::unique_ptr<Params> params)
+    : Device(std::move(communication), std::move(name), std::move(serial_port), id, init_params, true, std::make_unique<Params>()) {}
+
+Device::Device(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id, bool init_params, bool check_param, std::unique_ptr<Params> params)
     : name_(std::move(name)),
       serial_port_(std::move(serial_port)),
       params_(std::move(params)),
@@ -622,12 +625,15 @@ Device::Device(std::shared_ptr<Communication> communication, std::string name, s
   params_->id = id;
   if (init_params) {
     std::vector<int8_t> param_buffer;
-    if (getParameters(id, param_buffer) != 0) {
+    bool getParamSuccess = !getParameters(id, param_buffer);
+    if (!getParamSuccess && check_param) {
       throw std::runtime_error("failure during getParameters()");
     }
-    params_->initParams(param_buffer);
-    if (params_->id != id) {
-      throw std::runtime_error("failure during initParams()");
+    if (getParamSuccess){
+      params_->initParams(param_buffer);
+      if (params_->id != id) {
+        throw std::runtime_error("failure during initParams()");
+      }
     }
   }
 }
@@ -1066,6 +1072,10 @@ int Device::setParamZeros() {
     return -1;
   }
   return getParamEncoderOffsets();  // update intenal params_->encoder_offsets values
+}
+
+int Device::setParamSerialNumber(const uint32_t &serial_number) {
+  return -1;
 }
 
 int Device::setParamBaudrate(uint8_t prescaler_divider) {

@@ -182,3 +182,14 @@ int qbSoftHand2MotorsResearch::setHomePosition() {
   }
   return result;
 }
+
+int qbSoftHand2MotorsResearch::setParamSerialNumber(const uint32_t &serial_number) {
+  if(!((serial_number & qbhand2_mask_) == qbhand2_mask_)) {
+      return -3;
+  }
+  int set_fail = setParameter(28, Communication::vectorSwapAndCast<int8_t, uint32_t>({serial_number}));
+  if (!set_fail) {
+    params_->serial_number = "00" + std::to_string(serial_number);
+  }
+  return set_fail;
+}

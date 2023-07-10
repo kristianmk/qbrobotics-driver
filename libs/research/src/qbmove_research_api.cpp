@@ -35,7 +35,7 @@ void qbmoveResearch::Params::initParams(const std::vector<int8_t> &param_buffer)
 }
 
 qbmoveResearch::qbmoveResearch(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id)
-    : Device(std::move(communication), std::move(name), std::move(serial_port), id, true, std::make_unique<qbmoveResearch::Params>()) {}
+    : Device(std::move(communication), std::move(name), std::move(serial_port), id, true, std::make_unique<qbmoveResearch::Params>()){}
 
 qbmoveResearch::qbmoveResearch(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id, bool init_params)
     : Device(std::move(communication), std::move(name), std::move(serial_port), id, init_params, std::make_unique<qbmoveResearch::Params>()) {}
@@ -80,6 +80,16 @@ int qbmoveResearch::setParamRateLimiter(uint8_t rate_limiter) {
   return set_fail;
 }
 
+int qbmoveResearch::setParamSerialNumber(const uint32_t &serial_number) {
+  if(!((serial_number & qbmove_mask_) == qbmove_mask_ || (serial_number & claw_mask_) == claw_mask_)) {
+      return -3;
+  }
+  int set_fail = setParameter(15, Communication::vectorSwapAndCast<int8_t, uint32_t>({serial_number}));
+  if (!set_fail) {
+    params_->serial_number = "00" + std::to_string(serial_number);
+  }
+  return set_fail;
+}
 
 // ----------------------------------------------------------------
 

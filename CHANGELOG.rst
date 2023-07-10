@@ -2,6 +2,10 @@
 Changelog for package qbrobotics_driver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+7.1.3 (2023-07-10)
+------------------
+* FEAT: Added NMMI modification requests, FIX: bug fixed when Device object is declared
+
 7.1.2 (2022-07-18)
 ------------------
 * Bug fixed with installation directory

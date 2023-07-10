@@ -315,6 +315,7 @@ class Device {
   explicit Device(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id);
   explicit Device(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id, bool init_params);
   explicit Device(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id, bool init_params, std::unique_ptr<Params> params);
+  explicit Device(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id, bool init_params, bool check_param, std::unique_ptr<Params> params);
   virtual ~Device() = default;
 
   virtual int ping();
@@ -790,6 +791,13 @@ class Device {
   virtual int setParamZeros();
 
   /**
+   * @brief Set device serial number.
+   * @return 0 on success, < 0  on error.
+   * @warning The improper use of this function could damage the device and invalidate the device warranty. Contact our support team (support@qbrobotics.com) for more information.
+   */
+  virtual int setParamSerialNumber(const uint32_t &serial_number);
+
+  /**
    * @brief Set the device baud rate
    * 
    * @param prescaler_divider
@@ -845,6 +853,7 @@ class Device {
   bool isQbmove() { return params_->type == "001"; }
   bool isSHPRO()  { return params_->type == "006" && params_->sub_type == "001"; }
   bool isSH2M() { return params_->type == "006" && params_->sub_type == "020"; }
+  bool isSoftClaw() { return params_->type == "006" & params_->sub_type == "100";}
 
  protected:
   std::string name_;

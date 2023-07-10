@@ -110,5 +110,15 @@ namespace qbrobotics_research_api {
      * 
      */
     int setHomePosition();
+
+    /**
+     * @brief Set device serial number.
+     * @return 0 on success, < 0  on error.
+     * @warning The improper use of this function could damage the device and invalidate the device warranty. Contact our support team (support@qbrobotics.com) for more information.
+     */
+    int setParamSerialNumber(const uint32_t &serial_number) override;
+
+  private:
+    const uint32_t qbhand2_mask_ = 0b00000011100101100000000000000000;
   };
 }
