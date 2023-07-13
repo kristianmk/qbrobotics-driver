@@ -2,6 +2,10 @@
 Changelog for package qbrobotics_driver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+7.2.0 (2023-07-13)
+------------------
+* FEAT: Added specific subclass of qbmoveResearch for SoftClaw
+
 7.1.3 (2023-07-10)
 ------------------
 * FEAT: Added NMMI modification requests, FIX: bug fixed when Device object is declared

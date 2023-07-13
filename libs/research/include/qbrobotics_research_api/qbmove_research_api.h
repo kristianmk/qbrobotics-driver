@@ -48,7 +48,7 @@ class qbmoveResearch : public Device {
   ~qbmoveResearch() override = default;
 
   int computeAndStoreMaximumStiffness();
-  int setPositionAndStiffnessReferences(int16_t position, int16_t stiffness);
+  virtual int setPositionAndStiffnessReferences(int16_t position, int16_t stiffness);
 
   int getParamRateLimiter();
   int getParamRateLimiter(uint8_t &rate_limiter);
@@ -59,7 +59,6 @@ class qbmoveResearch : public Device {
 
   private:
     const uint32_t qbmove_mask_ = 0b00000000100110000000000000000000;
-    const uint32_t claw_mask_   = 0b00000011101000100000000000000000;
 };
 
 class qbmoveLegacyResearch : public qbmoveResearch {

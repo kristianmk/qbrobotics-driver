@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.1 FATAL_ERROR)
-project(qbrobotics_driver VERSION 7.1.3 LANGUAGES CXX)
+project(qbrobotics_driver VERSION 7.2.0 LANGUAGES CXX)
 get_filename_component(API_PATH ../ ABSOLUTE)
 if(EXISTS "${API_PATH}/serial/CMakeLists.txt")
         message("-- [ ${PROJECT_NAME}] Serial folder found")
@@ -14,6 +14,7 @@ add_library(qbrobotics_driver
   libs/research/src/qbsofthand_research_api.cpp
   libs/research/src/qbmove_research_api.cpp
   libs/research/src/qbsofthand2_research_api.cpp
+  libs/research/src/qbsoftclaw_api.cpp
 )
 target_include_directories(qbrobotics_driver PUBLIC
   $<BUILD_INTERFACE:${qbrobotics_driver_BINARY_DIR}/include>
