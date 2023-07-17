@@ -110,8 +110,6 @@ class qbSoftClaw : public qbmoveResearch {
    */
   int setPositionAndStiffnessReferences(int16_t position, int16_t stiffness) override;
 
-  private:
-    const uint32_t claw_mask_   = 0b00000011101000100000000000000000;
 };
 
 }  // namespace qbrobotics_research_api

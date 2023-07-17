@@ -57,8 +57,9 @@ class qbmoveResearch : public Device {
 
   int setParamSerialNumber(const uint32_t &serial_number) override;
 
-  private:
+  protected:
     const uint32_t qbmove_mask_ = 0b00000000100110000000000000000000;
+    const uint32_t claw_mask_   = 0b00000011101000100000000000000000;
 };
 
 class qbmoveLegacyResearch : public qbmoveResearch {

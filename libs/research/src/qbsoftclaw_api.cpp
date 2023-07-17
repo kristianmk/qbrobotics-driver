@@ -93,11 +93,7 @@ int qbSoftClaw::setParamSerialNumber(const uint32_t &serial_number){
   if(!((serial_number & claw_mask_) == claw_mask_)) {
       return -3;
   }
-  int set_fail = setParameter(15, Communication::vectorSwapAndCast<int8_t, uint32_t>({serial_number}));
-  if (!set_fail) {
-    params_->serial_number = "00" + std::to_string(serial_number);
-  }
-  return set_fail;
+  return qbmoveResearch::setParamSerialNumber(serial_number);
 };
     
 int qbSoftClaw::setPositionAndStiffnessReferences(int16_t position, int16_t stiffness){

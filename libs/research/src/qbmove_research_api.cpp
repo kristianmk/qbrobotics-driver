@@ -81,7 +81,7 @@ int qbmoveResearch::setParamRateLimiter(uint8_t rate_limiter) {
 }
 
 int qbmoveResearch::setParamSerialNumber(const uint32_t &serial_number) {
-  if(!((serial_number & qbmove_mask_) == qbmove_mask_)) {
+  if(!((serial_number & qbmove_mask_) == qbmove_mask_ || (serial_number & claw_mask_) == claw_mask_)) {
       return -3;
   }
   int set_fail = setParameter(15, Communication::vectorSwapAndCast<int8_t, uint32_t>({serial_number}));

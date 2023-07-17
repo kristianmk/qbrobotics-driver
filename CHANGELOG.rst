@@ -2,6 +2,10 @@
 Changelog for package qbrobotics_driver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+7.2.1 (2023-07-17)
+------------------
+* MINOR FIX: SC serial number can be set with qbmove method.
+
 7.2.0 (2023-07-13)
 ------------------
 * FEAT: Added specific subclass of qbmoveResearch for SoftClaw
