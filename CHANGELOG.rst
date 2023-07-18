@@ -2,6 +2,10 @@
 Changelog for package qbrobotics_driver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+7.2.2 (2023-07-18)
+------------------
+* FIX: fixed constructor for Device class
+
 7.2.1 (2023-07-17)
 ------------------
 * MINOR FIX: SC serial number can be set with qbmove method.

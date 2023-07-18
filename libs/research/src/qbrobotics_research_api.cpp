@@ -615,7 +615,7 @@ Device::Device(std::shared_ptr<Communication> communication, std::string name, s
     : Device(std::move(communication), std::move(name), std::move(serial_port), id, init_params, true, std::make_unique<Params>()) {}
 
 Device::Device(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id, bool init_params, std::unique_ptr<Params> params)
-    : Device(std::move(communication), std::move(name), std::move(serial_port), id, init_params, true, std::make_unique<Params>()) {}
+    : Device(std::move(communication), std::move(name), std::move(serial_port), id, init_params, true, std::move(params)) {}
 
 Device::Device(std::shared_ptr<Communication> communication, std::string name, std::string serial_port, uint8_t id, bool init_params, bool check_param, std::unique_ptr<Params> params)
     : name_(std::move(name)),
