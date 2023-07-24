@@ -2,6 +2,10 @@
 Changelog for package qbrobotics_driver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+7.2.5 (2023-07-24)
+------------------
+* FIX: updated README.md file
+
 7.2.4 (2023-07-24)
 ------------------
 * MINOR FIX: updated licenses

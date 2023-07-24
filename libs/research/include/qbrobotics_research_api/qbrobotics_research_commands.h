@@ -28,7 +28,7 @@
 #ifndef QBROBOTICS_DRIVER_QBROBOTICS_RESEARCH_COMMANDS_H
 #define QBROBOTICS_DRIVER_QBROBOTICS_RESEARCH_COMMANDS_H
 
-#define API_VERSION "7.2.4"
+#define API_VERSION "7.2.5"
 
 #define PARAM_BYTE_SLOT         50    // Number of bytes reserved to param's information
 #define PARAM_MENU_SLOT         150   // Number of bytes reserved to a param menu

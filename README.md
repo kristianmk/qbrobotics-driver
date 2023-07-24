@@ -1,6 +1,6 @@
 # qbrobotics driver
 
-C++ API to control qbrobotics devices (SoftHand Research, SoftHand2 Research and qbmove)
+C++ API to control qbrobotics devices (SoftHand Research, SoftHand2 Research, qbmove and qb SoftClaw)
 
 ## INSTALLATION
 
