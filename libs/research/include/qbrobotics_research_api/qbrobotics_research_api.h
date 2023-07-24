@@ -4,7 +4,7 @@
  *
  *  Software License Agreement: BSD 3-Clause License
  *
- *  Copyright (c) 2015-2022, qbrobotics®
+ *  Copyright (c) 2015-2023, qbrobotics®
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the

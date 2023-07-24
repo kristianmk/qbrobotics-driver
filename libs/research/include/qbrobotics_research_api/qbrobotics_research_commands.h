@@ -1,7 +1,7 @@
 /***
  *  Software License Agreement: BSD 3-Clause License
  *
- *  Copyright (c) 2015-2021, qbrobotics®
+ *  Copyright (c) 2015-2023, qbrobotics®
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -28,7 +28,7 @@
 #ifndef QBROBOTICS_DRIVER_QBROBOTICS_RESEARCH_COMMANDS_H
 #define QBROBOTICS_DRIVER_QBROBOTICS_RESEARCH_COMMANDS_H
 
-#define API_VERSION "7.2.2"
+#define API_VERSION "7.2.4"
 
 #define PARAM_BYTE_SLOT         50    // Number of bytes reserved to param's information
 #define PARAM_MENU_SLOT         150   // Number of bytes reserved to a param menu

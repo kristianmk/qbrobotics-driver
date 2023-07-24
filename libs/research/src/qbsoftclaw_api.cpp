@@ -1,7 +1,7 @@
 /***
  *  Software License Agreement: BSD 3-Clause License
  *
- *  Copyright (c) 2015-2021, qbrobotics®
+ *  Copyright (c) 2015-2023, qbrobotics®
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -87,13 +87,6 @@ int qbSoftClaw::setDeflectionReference(int16_t deflection){
   }
 
   return qbmoveResearch::setPositionAndStiffnessReferences(deflection_raw, 0);
-};
-  
-int qbSoftClaw::setParamSerialNumber(const uint32_t &serial_number){
-  if(!((serial_number & claw_mask_) == claw_mask_)) {
-      return -3;
-  }
-  return qbmoveResearch::setParamSerialNumber(serial_number);
 };
     
 int qbSoftClaw::setPositionAndStiffnessReferences(int16_t position, int16_t stiffness){

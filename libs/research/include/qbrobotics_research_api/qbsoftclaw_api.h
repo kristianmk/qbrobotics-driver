@@ -1,7 +1,7 @@
 /***
  *  Software License Agreement: BSD 3-Clause License
  *
- *  Copyright (c) 2015-2021, qbrobotics®
+ *  Copyright (c) 2015-2023, qbrobotics®
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -91,15 +91,6 @@ class qbSoftClaw : public qbmoveResearch {
    * @return 0 on success, < 0 on error
    */
   int setDeflectionReference(int16_t deflection);
-  
-  /**
-   * @brief Set the Param Serial Number of the device
-   * 
-   * @param serial_number 
-   * @return 0 on success, < 0 on error
-   * @warning The improper use of this function could damage the device and invalidate the device warranty. Contact our support team (support@qbrobotics.com) for more information. 
-   */
-  int setParamSerialNumber(const uint32_t &serial_number) override;
     
   /**
    * @brief Set the Position And Stiffness References values for the claw while the position-stiffness control is active
