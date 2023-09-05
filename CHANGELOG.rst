@@ -2,6 +2,14 @@
 Changelog for package qbrobotics_driver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+7.2.7 (2023-09-05)
+------------------
+* Add position-current control mode in setPositionAndStifness
+
+7.2.6 (2023-08-30)
+------------------
+* FEAT: Added function to industry lib.
+
 7.2.5 (2023-07-24)
 ------------------
 * FIX: updated README.md file

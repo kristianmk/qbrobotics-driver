@@ -50,6 +50,9 @@ int qbSoftClaw::setControlMode(const controlModes &control_mode){
     case position_stiffness:
       return setParamControlMode(0);
 
+    case position_current:
+      return setParamControlMode(3);
+
     case deflection:
       return setParamControlMode(4);
 
@@ -98,7 +101,7 @@ int qbSoftClaw::setPositionAndStiffnessReferences(int16_t position, int16_t stif
   }
   stiffness *= 320;//from percentage to tick
 
-  if (getParams()->control_mode == 0) { //check if control mode is "position-stiffness"
+  if ((getParams()->control_mode == 0) || (getParams()->control_mode == 3)) { //check if control mode is "position-stiffness" or "position-current"
     return qbmoveResearch::setPositionAndStiffnessReferences(position, stiffness);
   }
   return -1;

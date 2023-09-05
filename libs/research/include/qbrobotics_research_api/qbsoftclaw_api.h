@@ -51,6 +51,7 @@ class qbSoftClaw : public qbmoveResearch {
   enum controlModes {
 
     position_stiffness,
+    position_current,
     deflection,
     deflection_current
 
