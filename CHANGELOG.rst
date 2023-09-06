@@ -2,6 +2,10 @@
 Changelog for package qbrobotics_driver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+7.2.8 (2023-09-06)
+------------------
+* FEAT: API SHIN are now compatible with FW 1.1.0. Libs on windows can be compiled using MinGW.
+
 7.2.7 (2023-09-05)
 ------------------
 * Add position-current control mode in setPositionAndStifness
